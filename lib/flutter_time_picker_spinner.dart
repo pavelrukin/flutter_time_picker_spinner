@@ -79,7 +79,7 @@ class TimePickerSpinner extends StatefulWidget {
   final double? spacing;
   final bool isForce2Digits;
   final TimePickerCallback? onTimeChange;
-
+final bool spaceWithColon;
   TimePickerSpinner(
       {Key? key,
       this.time,
@@ -94,6 +94,7 @@ class TimePickerSpinner extends StatefulWidget {
       this.alignment,
       this.spacing,
       this.isForce2Digits = false,
+      this.spaceWithColon = false,
       this.onTimeChange})
       : super(key: key);
 
@@ -299,9 +300,15 @@ class _TimePickerSpinnerState extends State<TimePickerSpinner> {
   }
 
   Widget spacer() {
-    return Container(
+  return new Container(
+      padding: EdgeInsets.fromLTRB(10,0,0,4),
+      child: Center(
+        child: widget.spaceWithColon==true? Text(":",
+            style:  defaultHighlightTextStyle
+        ):Text(""),
+      ),
       width: _getSpacing(),
-      height: _getItemHeight()! * 3,
+      height: _getItemHeight() * 3,
     );
   }
 
